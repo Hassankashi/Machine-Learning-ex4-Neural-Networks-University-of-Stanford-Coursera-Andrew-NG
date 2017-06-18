@@ -56,56 +56,6 @@ Theta2_grad = zeros(size(Theta2));
 % a(3): 5000 by 10 matrix?
 % a(3)k: is the kth column of the the 5000 by 10 matrix? SO ==> yv(:,k)' log(hX3(:,k))
 
-
- 
- %X          5000 * 401
- %hX(2)      26 * 5000
- %theta1     25 * 401
- %theta2     10 * 26
- %hX(3)      10 * 5000
- %yv         5000 *10
-
-
-% a2 = [ones(m, 1) hX2];
-%   for k=1:num_labels
-%      %hX(3)      5000 * 10
-%      %smalldelta3 (1 * 10)
-%      smalldelta3(:,k)= hX3(:,k) - yv(:,k);
-%      
-%      smalldelta3= hX3- yv';
-%   end
- 
-
-%X          5000 * 401
- %hX(2)      26 * 5000
- %theta1     25 * 401
- %theta2     10 * 26
- %hX(3)      10 * 5000
- %yv         5000 *10
-% a1 (or X) - 5000x401
-% z2 - 5000x25
-% a2 (with a(2)0 added) - 5000x26
-% z3 and a3 - 5000x10
-%I would advise adding 1' as the first column to a2 by using a2 = [ones(m, 1) a2]; operation.
-%smalldelta3 5000 * 10
-
-%     smalldelta2 = (Theta2'*delta3')*(a2.*(1-a2));
-%     n=size(Theta2,2);
-%     
-%     smalldelta2=smalldelta2';
-%     smalldelta2(:,1)= [];
-%     smalldelta2=smalldelta2';
-%     %smalldelta2= smalldelta2((2:n),:);
-%     %hX2_me = hX2((2:n),:);
-%     hX2_me = hX2';
-%     hX2_me(:,1)= [];
-%     hX2_me=hX2_me';
-%    
-%     mygrad=sigmoidGradient(hX2_me);
-%     smalldelta2 = mygrad.*smalldelta2;
-   
-
-
  hX2=  sigmoid(X*Theta1');
  
  %%%  hX(2)        5000 * 25
@@ -113,30 +63,12 @@ Theta2_grad = zeros(size(Theta2));
 
  hX2 = [ones(m,1) hX2];
  a2=hX2;
- 
- %X          5000 * 401
- %hX(2)      5000 * 25
- %theta1     25 * 401
- %theta2     10 * 26
- %hX(3)      5000 * 10
- %X          5000 * 401
- %hX(2)      26 * 5000
- %theta1     25 * 401
- %theta2     10 * 26
- %hX(3)      10 * 5000
- %yv         5000 *10
-% a1 (or X) - 5000x401
-% z2 - 5000x25
-% a2 (with a(2)0 added) - 5000x26
-% z3 and a3 - 5000x10
+
  hX3=sigmoid(hX2*Theta2');
  z3=hX3;
  a3=z3;
  yv = repmat(1:num_labels, size(y,1) , 1) == repmat(y, 1, num_labels);
  costSum=0;
- 
-%yv         5000 *10
-
 
  for k=1:num_labels
      
@@ -233,23 +165,6 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 % -------------------------------------------------------------
